@@ -1,20 +1,17 @@
 package com.codewithsaif.pwdstore;
 
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.stereotype.Service;
 
-@Controller
-public class HomeController {
+@Service
+public class NotificationManager {
     private NotificationService notificationService;
-    public HomeController(NotificationService notificationService) {
+    public NotificationManager(@Qualifier("sms") NotificationService notificationService) {
         this.notificationService = notificationService;
     }
 
-    @RequestMapping("")
-    public String homePage(){
+    public void sendNotification(){
         System.out.println("prepare Notification");
         this.notificationService.sendNotification();
-        return "index.html";
     }
 }
